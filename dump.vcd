@@ -1,0 +1,321 @@
+$date
+	Wed Oct 29 18:09:59 2025
+$end
+$version
+	QuestaSim Version 2021.2_1
+$end
+$timescale
+	1ps
+$end
+
+$scope module tb_dual_port_diff_latency_ram $end
+$var parameter 32 ! DATA_W $end
+$var parameter 32 " ADDR_W $end
+$var parameter 32 # RD_LAT_A $end
+$var parameter 32 $ WR_LAT_A $end
+$var parameter 32 % RD_LAT_B $end
+$var parameter 32 & WR_LAT_B $end
+$var reg 1 ' clk $end
+$var reg 1 ( rst_n $end
+$var reg 1 ) we_a $end
+$var reg 4 * addr_a [3:0] $end
+$var reg 8 + din_a [7:0] $end
+$var wire 1 , dout_a [7] $end
+$var wire 1 - dout_a [6] $end
+$var wire 1 . dout_a [5] $end
+$var wire 1 / dout_a [4] $end
+$var wire 1 0 dout_a [3] $end
+$var wire 1 1 dout_a [2] $end
+$var wire 1 2 dout_a [1] $end
+$var wire 1 3 dout_a [0] $end
+$var reg 1 4 we_b $end
+$var reg 4 5 addr_b [3:0] $end
+$var reg 8 6 din_b [7:0] $end
+$var wire 1 7 dout_b [7] $end
+$var wire 1 8 dout_b [6] $end
+$var wire 1 9 dout_b [5] $end
+$var wire 1 : dout_b [4] $end
+$var wire 1 ; dout_b [3] $end
+$var wire 1 < dout_b [2] $end
+$var wire 1 = dout_b [1] $end
+$var wire 1 > dout_b [0] $end
+
+$scope module dut $end
+$var parameter 32 ? DATA_WIDTH $end
+$var parameter 32 @ ADDR_WIDTH $end
+$var parameter 32 A RAM_DEPTH $end
+$var parameter 32 B READ_LATENCY_A $end
+$var parameter 32 C WRITE_LATENCY_A $end
+$var parameter 32 D READ_LATENCY_B $end
+$var parameter 32 E WRITE_LATENCY_B $end
+$var wire 1 F clk $end
+$var wire 1 G rst_n $end
+$var wire 1 H we_a $end
+$var wire 1 I addr_a [3] $end
+$var wire 1 J addr_a [2] $end
+$var wire 1 K addr_a [1] $end
+$var wire 1 L addr_a [0] $end
+$var wire 1 M din_a [7] $end
+$var wire 1 N din_a [6] $end
+$var wire 1 O din_a [5] $end
+$var wire 1 P din_a [4] $end
+$var wire 1 Q din_a [3] $end
+$var wire 1 R din_a [2] $end
+$var wire 1 S din_a [1] $end
+$var wire 1 T din_a [0] $end
+$var reg 8 U dout_a [7:0] $end
+$var wire 1 V we_b $end
+$var wire 1 W addr_b [3] $end
+$var wire 1 X addr_b [2] $end
+$var wire 1 Y addr_b [1] $end
+$var wire 1 Z addr_b [0] $end
+$var wire 1 [ din_b [7] $end
+$var wire 1 \ din_b [6] $end
+$var wire 1 ] din_b [5] $end
+$var wire 1 ^ din_b [4] $end
+$var wire 1 _ din_b [3] $end
+$var wire 1 ` din_b [2] $end
+$var wire 1 a din_b [1] $end
+$var wire 1 b din_b [0] $end
+$var reg 8 c dout_b [7:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0'
+0(
+0)
+b0 *
+b0 +
+04
+b0 5
+b0 6
+bx U
+bx c
+b1000 !
+b100 "
+b10 #
+b1 $
+b1 %
+b10 &
+b1000 ?
+b100 @
+b10000 A
+b10 B
+b1 C
+b1 D
+b10 E
+x3
+x2
+x1
+x0
+x/
+x.
+x-
+x,
+x>
+x=
+x<
+x;
+x:
+x9
+x8
+x7
+0b
+0a
+0`
+0_
+0^
+0]
+0\
+0[
+0Z
+0Y
+0X
+0W
+0V
+0T
+0S
+0R
+0Q
+0P
+0O
+0N
+0M
+0L
+0K
+0J
+0I
+0H
+0G
+0F
+$end
+#5000
+1'
+1F
+#10000
+1(
+0'
+1G
+0F
+#15000
+1'
+1F
+b0 c
+0>
+0=
+0<
+0;
+0:
+09
+08
+07
+#20000
+0'
+0F
+1)
+b11 *
+b10101010 +
+14
+b101 5
+b10111011 6
+1H
+1V
+1b
+1a
+1_
+1^
+1]
+1[
+1Z
+1X
+1S
+1Q
+1O
+1M
+1L
+1K
+#25000
+1'
+1F
+b0 U
+03
+02
+01
+00
+0/
+0.
+0-
+0,
+#30000
+0'
+0F
+0)
+04
+0H
+0V
+#35000
+1'
+1F
+#40000
+0'
+0F
+#45000
+1'
+1F
+#50000
+0'
+0F
+#55000
+1'
+1F
+#60000
+0'
+0F
+1)
+b1 *
+b11001100 +
+14
+b1 5
+b11011101 6
+1H
+1V
+0a
+1`
+0]
+1\
+0X
+0S
+1R
+0O
+1N
+0K
+#65000
+1'
+1F
+b10101010 U
+b10111011 c
+1>
+1=
+1;
+1:
+19
+17
+12
+10
+1.
+1,
+#70000
+0'
+0F
+0)
+04
+0H
+0V
+#75000
+1'
+1F
+b0 c
+0>
+0=
+0;
+0:
+09
+07
+#80000
+0'
+0F
+#85000
+1'
+1F
+b0 U
+02
+00
+0.
+0,
+#90000
+0'
+0F
+#95000
+1'
+1F
+b11001100 c
+1<
+1;
+18
+17
+#100000
+0'
+0F
+#105000
+1'
+1F
+b11001100 U
+b11011101 c
+1>
+1:
+11
+10
+1-
+1,

@@ -1,0 +1,170 @@
+m255
+K4
+z2
+Z0 !s99 nomlopt
+R0
+R0
+R0
+R0
+R0
+!s11f vlog 2021.2_1 2021.05, May 15 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z1 d/home/user/Dual_Port_Mem
+T_opt
+!s110 1761892627
+VPn]dTZEdog>Cz=8YCo5c:2
+04 24 4 work dual_port_memory_latency fast 0
+=1-000ae431a4f1-69045913-b5acf-2afa
+Z2 !s124 OEM100
+Z3 o-quiet -auto_acc_if_foreign -work work +acc
+Z4 tCvgOpt 0
+n@_opt
+Z5 OL;O;2021.2_1;73
+R1
+T_opt1
+!s110 1761893372
+Va0]PnIokFI[<foHS9nSSj0
+04 34 4 work dual_port_memory_latency_testbench fast 0
+=1-000ae431a4f1-69045bfc-54d2d-2e52
+R2
+R3
+R4
+n@_opt1
+R5
+R1
+T_opt2
+!s110 1761901622
+V>]Z]Yd=D>oeJ]9oQ]=jGo0
+04 16 4 work tb_dual_port_ram fast 0
+=1-000ae431a4f1-69047c35-ed73b-1399
+R2
+R3
+R4
+n@_opt2
+R5
+R1
+vdual_port_memory_latency
+Z6 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+!s110 1761899639
+!i10b 1
+!s100 O1>1WKae1d9`mT;7=ifOF0
+Iz>QCST;hXK^ZZOf38^6@i0
+S1
+R1
+w1761899633
+Z7 8dual_port_memory_latency.sv
+Z8 Fdual_port_memory_latency.sv
+!i122 22
+L0 15 107
+Z9 VDg1SIo80bB@j0V0VzS_@n1
+Z10 OL;L;2021.2_1;73
+r1
+!s85 0
+31
+!s108 1761899639.000000
+Z11 !s107 dual_port_memory_latency.sv|
+Z12 !s90 -reportprogress|300|dual_port_memory_latency.sv|
+!i113 0
+Z13 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R4
+vdual_port_memory_latency_error_correction
+R6
+!s110 1761912323
+!i10b 1
+!s100 XE[K0;SV=F69CCc>VSfVd0
+I6aAnlG]S8UaPlDV=ZTI^A0
+S1
+R1
+w1761912321
+8dual_port_memory_latency_error_correction.sv
+Fdual_port_memory_latency_error_correction.sv
+!i122 29
+L0 11 62
+R9
+R10
+r1
+!s85 0
+31
+!s108 1761912323.000000
+!s107 dual_port_memory_latency_error_correction.sv|
+!s90 dual_port_memory_latency_error_correction.sv|
+!i113 0
+R13
+R4
+vdual_port_memory_latency_testbench
+R6
+!s110 1761899727
+!i10b 1
+!s100 aXnP@cjOLV8Ci>kzdhP0G1
+IB@Y1<B0P:D?nVIb6`9Wd=0
+S1
+R1
+w1761899676
+Z14 8dual_port_memory_latency_test_bench.sv
+Z15 Fdual_port_memory_latency_test_bench.sv
+!i122 25
+L0 1 71
+R9
+R10
+r1
+!s85 0
+31
+!s108 1761899727.000000
+Z16 !s107 dual_port_memory_latency_test_bench.sv|
+Z17 !s90 -reportprogress|300|dual_port_memory_latency_test_bench.sv|
+!i113 0
+R13
+R4
+vdual_port_ram_with_latencies
+R6
+!s110 1761899808
+!i10b 1
+!s100 d25]FcejJNi;>LIS?hkS22
+I=3ao@HXieb7BRPJPBSzl_1
+S1
+R1
+w1761899766
+R7
+R8
+!i122 26
+L0 15 130
+R9
+R10
+r1
+!s85 0
+31
+!s108 1761899807.000000
+R11
+R12
+!i113 0
+R13
+R4
+vtb_dual_port_ram
+R6
+!s110 1761901618
+!i10b 1
+!s100 HW5lBg=BF<A0AJN`iCl`m2
+IgNKFeA3a^J5cjAghFccW13
+S1
+R1
+w1761901607
+R14
+R15
+!i122 28
+L0 1 180
+R9
+R10
+r1
+!s85 0
+31
+!s108 1761901618.000000
+R16
+R17
+!i113 0
+R13
+R4
