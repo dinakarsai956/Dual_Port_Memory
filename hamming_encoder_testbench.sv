@@ -7,7 +7,7 @@ module tb_hamming_encoder_8to12();
     wire [11:0] data_out;
 
     // Instantiate DUT
-    hamming_encoder_8to12 dut (
+    hamming_encoder dut (
         .data_in(data_in),
         .data_out(data_out)
     );

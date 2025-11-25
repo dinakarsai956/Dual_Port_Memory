@@ -29,8 +29,8 @@ module dual_port_memory_latency_error_correction #(parameter DATA_WIDTH = 8,
   logic [ENCODED_WIDTH-1:0] o_encoded_data_a, o_encoded_data_b;
   logic [DATA_WIDTH-1:0] o_decoded_data_a, o_decoded_data_b;
   logic corrected_data_a, corrected_data_b;
-  hamming_encoder8to12 duta(.data_in(i_din_a), .data_out(i_encoded_data_a));
-  hamming_encoder8to12 dutb(.data_in(i_din_b), .data_out(i_encoded_data_b));
+  hamming_encoder duta(.data_in(i_din_a), .data_out(i_encoded_data_a));
+  hamming_encoder dutb(.data_in(i_din_b), .data_out(i_encoded_data_b));
   
     dual_port_ram_with_latencies #(
         .DATA_WIDTH(ENCODED_WIDTH),
@@ -53,14 +53,16 @@ module dual_port_memory_latency_error_correction #(parameter DATA_WIDTH = 8,
         .o_dout_a(o_encoded_data_a),
         .o_dout_b(o_encoded_data_b)
     );
-  hamming_decoder dutc(.data_in(o_encoded_data_a), .data_out(o_dout_a), .error_detected(error_a), .error_corrected(corrected_data_a));
-  hamming_decoder dutd(.data_in(o_encoded_data_a), .data_out(o_data_out), .error_detected(error_b), .error_corrected(corrected_data_b));
+  hamming_decoder dutc(.data_in(o_encoded_data_a), .data_out(o_decoded_data_a), .error_detected(error_a), .error_corrected(corrected_data_a));
+  hamming_decoder dutd(.data_in(o_encoded_data_b), .data_out(o_decoded_data_b), .error_detected(error_b), .error_corrected(corrected_data_b));
    
    always_ff @(posedge i_clk_a)begin
+     o_dout_a <= o_decoded_data_a;
      if(error_a)
        $display("Port_A errror detcted and corrected at time %0t", $time);
    end
      always_ff @(posedge i_clk_b)begin
+       o_dout_b <= o_decoded_data_b;
      if(error_b)
        $display("Port_B errror detcted and corrected at time %0t", $time);
    end

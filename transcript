@@ -12,422 +12,278 @@
 # //  is prohibited from disclosure under the Trade Secrets Act,
 # //  18 U.S.C. Section 1905.
 # //
-# vsim -voptargs="+acc" dual_port_memory_latency_test_bench 
-# Start time: 13:55:00 on Oct 31,2025
-# ** Note: (vsim-3812) Design is being optimized...
-# ** Error: (vopt-13130) Failed to find design unit dual_port_memory_latency_test_bench.
-#         Searched libraries:
-#             work
-# Optimization failed
-# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=1, Warnings=0.
-# Error loading design
-# End time: 13:55:00 on Oct 31,2025, Elapsed time: 0:00:00
-# Errors: 1, Warnings: 0
-vlog dual_port_memory_latency_test_bench.sv
-# QuestaSim-64 vlog 2021.2_1 Compiler 2021.05 May 15 2021
-# Start time: 13:57:16 on Oct 31,2025
-# vlog -reportprogress 300 dual_port_memory_latency_test_bench.sv 
-# -- Compiling module dual_port_memory_latency_testbench
-# 
-# Top level modules:
-# 	dual_port_memory_latency_testbench
-# End time: 13:57:16 on Oct 31,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vsim -voptargs=+acc dual_port_memory_latency_testbench
-# vsim -voptargs="+acc" dual_port_memory_latency_testbench 
-# Start time: 13:57:31 on Oct 31,2025
+# vsim -voptargs="+acc" top_testbench 
+# Start time: 16:43:29 on Nov 25,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # Loading sv_std.std
-# Loading work.dual_port_memory_latency_testbench(fast)
+# Loading work.top_testbench(fast)
+# Loading work.dual_port_memory_top_module(fast)
 # Loading work.dual_port_memory_latency(fast)
+# Loading work.hamming_encoder(fast)
+# Loading work.hamming_decoder(fast)
 add wave -position insertpoint  \
-sim:/dual_port_memory_latency_testbench/dut/WIDTH \
-sim:/dual_port_memory_latency_testbench/dut/ADDR \
-sim:/dual_port_memory_latency_testbench/dut/DEPTH \
-sim:/dual_port_memory_latency_testbench/dut/WRITE_LATENCY_A \
-sim:/dual_port_memory_latency_testbench/dut/READ_LATENCY_A \
-sim:/dual_port_memory_latency_testbench/dut/WRITE_LATENCY_B \
-sim:/dual_port_memory_latency_testbench/dut/READ_LATENCY_B \
-sim:/dual_port_memory_latency_testbench/dut/i_clk_a \
-sim:/dual_port_memory_latency_testbench/dut/i_clk_b \
-sim:/dual_port_memory_latency_testbench/dut/i_en_a \
-sim:/dual_port_memory_latency_testbench/dut/i_en_b \
-sim:/dual_port_memory_latency_testbench/dut/i_we_a \
-sim:/dual_port_memory_latency_testbench/dut/i_we_b \
-sim:/dual_port_memory_latency_testbench/dut/i_din_a \
-sim:/dual_port_memory_latency_testbench/dut/i_din_b \
-sim:/dual_port_memory_latency_testbench/dut/i_addr_a \
-sim:/dual_port_memory_latency_testbench/dut/i_addr_b \
-sim:/dual_port_memory_latency_testbench/dut/o_dout_a \
-sim:/dual_port_memory_latency_testbench/dut/o_dout_b \
-sim:/dual_port_memory_latency_testbench/dut/mem \
-sim:/dual_port_memory_latency_testbench/dut/read_sr_a \
-sim:/dual_port_memory_latency_testbench/dut/addr_sr_a \
-sim:/dual_port_memory_latency_testbench/dut/write_sr_a \
-sim:/dual_port_memory_latency_testbench/dut/read_sr_b \
-sim:/dual_port_memory_latency_testbench/dut/addr_sr_b \
-sim:/dual_port_memory_latency_testbench/dut/write_sr_b
-run -all
-# Nani
-# ** Note: $finish    : dual_port_memory_latency_test_bench.sv(69)
-#    Time: 1200 ns  Iteration: 0  Instance: /dual_port_memory_latency_testbench
-# 1
-# Break in Module dual_port_memory_latency_testbench at dual_port_memory_latency_test_bench.sv line 69
-vlog dual_port_memory_latency.sv
-# QuestaSim-64 vlog 2021.2_1 Compiler 2021.05 May 15 2021
-# Start time: 14:00:06 on Oct 31,2025
-# vlog -reportprogress 300 dual_port_memory_latency.sv 
-# -- Compiling module dual_port_ram_with_latencies
-# 
-# Top level modules:
-# 	dual_port_ram_with_latencies
-# End time: 14:00:06 on Oct 31,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog dual_port_memory_latency_test_bench.sv
-# QuestaSim-64 vlog 2021.2_1 Compiler 2021.05 May 15 2021
-# Start time: 14:00:13 on Oct 31,2025
-# vlog -reportprogress 300 dual_port_memory_latency_test_bench.sv 
-# -- Compiling module dual_port_ram_with_latencies
-# 
-# Top level modules:
-# 	dual_port_ram_with_latencies
-# End time: 14:00:13 on Oct 31,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vsim -voptargs=+acc dual_port_memory_latency_testbench
-# End time: 14:00:16 on Oct 31,2025, Elapsed time: 0:02:45
-# Errors: 0, Warnings: 0
-# vsim -voptargs="+acc" dual_port_memory_latency_testbench 
-# Start time: 14:00:16 on Oct 31,2025
-# ** Note: (vsim-8009) Loading existing optimized design _opt2
-# Loading sv_std.std
-# Loading work.dual_port_memory_latency_testbench(fast)
-# Loading work.dual_port_memory_latency(fast)
+sim:/top_testbench/dut/dut_a/WIDTH \
+sim:/top_testbench/dut/dut_a/ADDR_WIDTH \
+sim:/top_testbench/dut/dut_a/DEPTH \
+sim:/top_testbench/dut/dut_a/WRITE_LATENCY_A \
+sim:/top_testbench/dut/dut_a/READ_LATENCY_A \
+sim:/top_testbench/dut/dut_a/WRITE_LATENCY_B \
+sim:/top_testbench/dut/dut_a/READ_LATENCY_B \
+sim:/top_testbench/dut/dut_a/i_clk_a \
+sim:/top_testbench/dut/dut_a/i_we_a \
+sim:/top_testbench/dut/dut_a/i_en_a \
+sim:/top_testbench/dut/dut_a/i_addr_a \
+sim:/top_testbench/dut/dut_a/i_din_a \
+sim:/top_testbench/dut/dut_a/o_dout_a \
+sim:/top_testbench/dut/dut_a/i_clk_b \
+sim:/top_testbench/dut/dut_a/i_we_b \
+sim:/top_testbench/dut/dut_a/i_en_b \
+sim:/top_testbench/dut/dut_a/i_addr_b \
+sim:/top_testbench/dut/dut_a/i_din_b \
+sim:/top_testbench/dut/dut_a/o_dout_b \
+sim:/top_testbench/dut/dut_a/mem \
+sim:/top_testbench/dut/dut_a/ren_a \
+sim:/top_testbench/dut/dut_a/ren_b \
+sim:/top_testbench/dut/dut_a/wpipe_a \
+sim:/top_testbench/dut/dut_a/wpipe_b \
+sim:/top_testbench/dut/dut_a/i \
+sim:/top_testbench/dut/dut_a/j
+# Unable to lock WLF file "vsim.wlf". Retrying 1 times, errno 11
+# Unable to lock WLF file "vsim.wlf". Retrying 2 times, errno 11
+# Unable to lock WLF file "vsim.wlf". Retrying 3 times, errno 11
+# Cannot lock WLF file: "vsim.wlf"
+#           errno 11: Resource temporarily unavailable.
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: user  Hostname: localhost.localdomain  ProcessID: 32682
+#           Attempting to use alternate WLF file "./wlfte7BaOn".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlfte7BaOn
 add wave -position insertpoint  \
-sim:/dual_port_memory_latency_testbench/dut/WIDTH \
-sim:/dual_port_memory_latency_testbench/dut/ADDR \
-sim:/dual_port_memory_latency_testbench/dut/DEPTH \
-sim:/dual_port_memory_latency_testbench/dut/WRITE_LATENCY_A \
-sim:/dual_port_memory_latency_testbench/dut/READ_LATENCY_A \
-sim:/dual_port_memory_latency_testbench/dut/WRITE_LATENCY_B \
-sim:/dual_port_memory_latency_testbench/dut/READ_LATENCY_B \
-sim:/dual_port_memory_latency_testbench/dut/i_clk_a \
-sim:/dual_port_memory_latency_testbench/dut/i_clk_b \
-sim:/dual_port_memory_latency_testbench/dut/i_en_a \
-sim:/dual_port_memory_latency_testbench/dut/i_en_b \
-sim:/dual_port_memory_latency_testbench/dut/i_we_a \
-sim:/dual_port_memory_latency_testbench/dut/i_we_b \
-sim:/dual_port_memory_latency_testbench/dut/i_din_a \
-sim:/dual_port_memory_latency_testbench/dut/i_din_b \
-sim:/dual_port_memory_latency_testbench/dut/i_addr_a \
-sim:/dual_port_memory_latency_testbench/dut/i_addr_b \
-sim:/dual_port_memory_latency_testbench/dut/o_dout_a \
-sim:/dual_port_memory_latency_testbench/dut/o_dout_b \
-sim:/dual_port_memory_latency_testbench/dut/mem \
-sim:/dual_port_memory_latency_testbench/dut/read_sr_a \
-sim:/dual_port_memory_latency_testbench/dut/addr_sr_a \
-sim:/dual_port_memory_latency_testbench/dut/write_sr_a \
-sim:/dual_port_memory_latency_testbench/dut/read_sr_b \
-sim:/dual_port_memory_latency_testbench/dut/addr_sr_b \
-sim:/dual_port_memory_latency_testbench/dut/write_sr_b
+sim:/top_testbench/dut/dut_b/data_in \
+sim:/top_testbench/dut/dut_b/data_out
+add wave -position insertpoint  \
+sim:/top_testbench/dut/dut_c/data_in \
+sim:/top_testbench/dut/dut_c/data_out
+add wave -position insertpoint  \
+sim:/top_testbench/dut/dut_e/data_in \
+sim:/top_testbench/dut/dut_e/error_detected \
+sim:/top_testbench/dut/dut_e/error_corrected \
+sim:/top_testbench/dut/dut_e/data_out \
+sim:/top_testbench/dut/dut_e/syndrome \
+sim:/top_testbench/dut/dut_e/corrected_code
+add wave -position insertpoint  \
+sim:/top_testbench/dut/dut_f/data_in \
+sim:/top_testbench/dut/dut_f/error_detected \
+sim:/top_testbench/dut/dut_f/error_corrected \
+sim:/top_testbench/dut/dut_f/data_out \
+sim:/top_testbench/dut/dut_f/syndrome \
+sim:/top_testbench/dut/dut_f/corrected_code
 restart
-# ** Note: (vsim-8009) Loading existing optimized design _opt2
-# Loading work.dual_port_memory_latency_testbench(fast)
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-8009) Loading existing optimized design _opt3
+# Loading work.top_testbench(fast)
+# Loading work.dual_port_memory_top_module(fast)
 # Loading work.dual_port_memory_latency(fast)
+# Loading work.hamming_encoder(fast)
+# Loading work.hamming_decoder(fast)
 run -all
-# Nani
-# ** Note: $finish    : dual_port_memory_latency_test_bench.sv(69)
-#    Time: 1200 ns  Iteration: 0  Instance: /dual_port_memory_latency_testbench
+# ** Note: $finish    : top_testbench2.sv(86)
+#    Time: 500 ns  Iteration: 0  Instance: /top_testbench
 # 1
-# Break in Module dual_port_memory_latency_testbench at dual_port_memory_latency_test_bench.sv line 69
-vlog dual_port_memory_latency_test_bench.sv
+# Break in Module top_testbench at top_testbench2.sv line 86
+vlog dual_port_memory_top_module.sv
 # QuestaSim-64 vlog 2021.2_1 Compiler 2021.05 May 15 2021
-# Start time: 14:01:32 on Oct 31,2025
-# vlog -reportprogress 300 dual_port_memory_latency_test_bench.sv 
-# -- Compiling module dual_port_ram_with_latencies
-# 
-# Top level modules:
-# 	dual_port_ram_with_latencies
-# End time: 14:01:32 on Oct 31,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog dual_port_memory_latency.sv
-# QuestaSim-64 vlog 2021.2_1 Compiler 2021.05 May 15 2021
-# Start time: 14:01:37 on Oct 31,2025
-# vlog -reportprogress 300 dual_port_memory_latency.sv 
+# Start time: 16:52:15 on Nov 25,2025
+# vlog -reportprogress 300 dual_port_memory_top_module.sv 
 # -- Compiling module dual_port_memory_latency
+# ** Warning: ** while parsing file included at dual_port_memory_top_module.sv(26)
+# ** at dual_port_memory_latency.sv(114): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: ** while parsing file included at dual_port_memory_top_module.sv(26)
+# ** at dual_port_memory_latency.sv(144): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module hamming_encoder
+# -- Compiling module hamming_decoder
+# -- Compiling module dual_port_memory_top_module
 # 
 # Top level modules:
-# 	dual_port_memory_latency
-# End time: 14:01:37 on Oct 31,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog dual_port_memory_latency_test_bench.sv
+# 	dual_port_memory_top_module
+# End time: 16:52:15 on Nov 25,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 2
+vlog top_testbench2.sv
 # QuestaSim-64 vlog 2021.2_1 Compiler 2021.05 May 15 2021
-# Start time: 14:01:41 on Oct 31,2025
-# vlog -reportprogress 300 dual_port_memory_latency_test_bench.sv 
-# -- Compiling module dual_port_ram_with_latencies
-# 
-# Top level modules:
-# 	dual_port_ram_with_latencies
-# End time: 14:01:41 on Oct 31,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vsim -voptargs=+acc dual_port_memory_latency_testbench
-# End time: 14:01:45 on Oct 31,2025, Elapsed time: 0:01:29
-# Errors: 0, Warnings: 0
-# vsim -voptargs="+acc" dual_port_memory_latency_testbench 
-# Start time: 14:01:45 on Oct 31,2025
-# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
-# ** Error (suppressible): dual_port_memory_latency_test_bench.sv(15): (vopt-2732) Module parameter 'WIDTH' not found for override.
-# ** Error (suppressible): dual_port_memory_latency_test_bench.sv(15): (vopt-2732) Module parameter 'ADDR' not found for override.
-# ** Error (suppressible): dual_port_memory_latency_test_bench.sv(15): (vopt-2732) Module parameter 'DEPTH' not found for override.
-# Optimization failed
-# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=3, Warnings=0.
-# Error loading design
-# End time: 14:01:45 on Oct 31,2025, Elapsed time: 0:00:00
-# Errors: 3, Warnings: 0
-vlog dual_port_memory_latency.sv
-# QuestaSim-64 vlog 2021.2_1 Compiler 2021.05 May 15 2021
-# Start time: 14:03:37 on Oct 31,2025
-# vlog -reportprogress 300 dual_port_memory_latency.sv 
+# Start time: 16:52:22 on Nov 25,2025
+# vlog -reportprogress 300 top_testbench2.sv 
 # -- Compiling module dual_port_memory_latency
+# ** Warning: ** while parsing file included at top_testbench2.sv(1)
+# ** while parsing file included at dual_port_memory_top_module.sv(26)
+# ** at dual_port_memory_latency.sv(114): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# ** Warning: ** while parsing file included at top_testbench2.sv(1)
+# ** while parsing file included at dual_port_memory_top_module.sv(26)
+# ** at dual_port_memory_latency.sv(144): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+# -- Compiling module hamming_encoder
+# -- Compiling module hamming_decoder
+# -- Compiling module dual_port_memory_top_module
+# -- Compiling module top_testbench
 # 
 # Top level modules:
-# 	dual_port_memory_latency
-# End time: 14:03:37 on Oct 31,2025, Elapsed time: 0:00:00
+# 	top_testbench
+# End time: 16:52:22 on Nov 25,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 2
+vsim -voptargs=+acc top_testbench
+# End time: 16:52:41 on Nov 25,2025, Elapsed time: 0:09:12
 # Errors: 0, Warnings: 0
-vlog dual_port_memory_latency_test_bench.sv
-# QuestaSim-64 vlog 2021.2_1 Compiler 2021.05 May 15 2021
-# Start time: 14:03:40 on Oct 31,2025
-# vlog -reportprogress 300 dual_port_memory_latency_test_bench.sv 
-# -- Compiling module dual_port_ram_with_latencies
-# 
-# Top level modules:
-# 	dual_port_ram_with_latencies
-# End time: 14:03:40 on Oct 31,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vsim -voptargs=+acc dual_port_memory_latency_testbench
-# vsim -voptargs="+acc" dual_port_memory_latency_testbench 
-# Start time: 14:03:43 on Oct 31,2025
-# ** Note: (vsim-3812) Design is being optimized...
-# ** Error (suppressible): dual_port_memory_latency_test_bench.sv(15): (vopt-2732) Module parameter 'DEPTH' not found for override.
-# Optimization failed
-# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=1, Warnings=0.
-# Error loading design
-# End time: 14:03:43 on Oct 31,2025, Elapsed time: 0:00:00
-# Errors: 1, Warnings: 0
-vlog dual_port_memory_latency.sv
-# QuestaSim-64 vlog 2021.2_1 Compiler 2021.05 May 15 2021
-# Start time: 14:03:59 on Oct 31,2025
-# vlog -reportprogress 300 dual_port_memory_latency.sv 
-# -- Compiling module dual_port_memory_latency
-# 
-# Top level modules:
-# 	dual_port_memory_latency
-# End time: 14:03:59 on Oct 31,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog dual_port_memory_latency_test_bench.sv
-# QuestaSim-64 vlog 2021.2_1 Compiler 2021.05 May 15 2021
-# Start time: 14:04:04 on Oct 31,2025
-# vlog -reportprogress 300 dual_port_memory_latency_test_bench.sv 
-# -- Compiling module dual_port_ram_with_latencies
-# 
-# Top level modules:
-# 	dual_port_ram_with_latencies
-# End time: 14:04:04 on Oct 31,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog dual_port_memory_latency.sv
-# QuestaSim-64 vlog 2021.2_1 Compiler 2021.05 May 15 2021
-# Start time: 14:05:22 on Oct 31,2025
-# vlog -reportprogress 300 dual_port_memory_latency.sv 
-# -- Compiling module dual_port_ram_with_latencies
-# 
-# Top level modules:
-# 	dual_port_ram_with_latencies
-# End time: 14:05:22 on Oct 31,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog dual_port_memory_latency_test_bench.sv
-# QuestaSim-64 vlog 2021.2_1 Compiler 2021.05 May 15 2021
-# Start time: 14:05:27 on Oct 31,2025
-# vlog -reportprogress 300 dual_port_memory_latency_test_bench.sv 
-# -- Compiling module dual_port_memory_latency_testbench
-# 
-# Top level modules:
-# 	dual_port_memory_latency_testbench
-# End time: 14:05:27 on Oct 31,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vsim -voptargs=+acc dual_port_memory_latency_testbench
-# vsim -voptargs="+acc" dual_port_memory_latency_testbench 
-# Start time: 14:05:32 on Oct 31,2025
-# ** Note: (vsim-3812) Design is being optimized...
-# ** Error (suppressible): dual_port_memory_latency_test_bench.sv(15): (vopt-2732) Module parameter 'DEPTH' not found for override.
-# Optimization failed
-# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=1, Warnings=0.
-# Error loading design
-# End time: 14:05:32 on Oct 31,2025, Elapsed time: 0:00:00
-# Errors: 1, Warnings: 0
-vlog dual_port_memory_latency.sv
-# QuestaSim-64 vlog 2021.2_1 Compiler 2021.05 May 15 2021
-# Start time: 14:06:47 on Oct 31,2025
-# vlog -reportprogress 300 dual_port_memory_latency.sv 
-# -- Compiling module dual_port_ram_with_latencies
-# 
-# Top level modules:
-# 	dual_port_ram_with_latencies
-# End time: 14:06:48 on Oct 31,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-vlog dual_port_memory_latency_test_bench.sv
-# QuestaSim-64 vlog 2021.2_1 Compiler 2021.05 May 15 2021
-# Start time: 14:06:50 on Oct 31,2025
-# vlog -reportprogress 300 dual_port_memory_latency_test_bench.sv 
-# -- Compiling module tb_dual_port_ram
-# 
-# Top level modules:
-# 	tb_dual_port_ram
-# End time: 14:06:50 on Oct 31,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vsim -voptargs=+acc tb_dual_port_ram
-# vsim -voptargs="+acc" tb_dual_port_ram 
-# Start time: 14:07:05 on Oct 31,2025
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading sv_std.std
-# Loading work.tb_dual_port_ram(fast)
-# Loading work.dual_port_ram_with_latencies(fast)
-add wave -position insertpoint  \
-sim:/tb_dual_port_ram/UUT/DATA_WIDTH \
-sim:/tb_dual_port_ram/UUT/ADDR_WIDTH \
-sim:/tb_dual_port_ram/UUT/WRITE_LATENCY_A \
-sim:/tb_dual_port_ram/UUT/READ_LATENCY_A \
-sim:/tb_dual_port_ram/UUT/WRITE_LATENCY_B \
-sim:/tb_dual_port_ram/UUT/READ_LATENCY_B \
-sim:/tb_dual_port_ram/UUT/MEM_DEPTH \
-sim:/tb_dual_port_ram/UUT/i_clk_a \
-sim:/tb_dual_port_ram/UUT/i_clk_b \
-sim:/tb_dual_port_ram/UUT/i_en_a \
-sim:/tb_dual_port_ram/UUT/i_en_b \
-sim:/tb_dual_port_ram/UUT/i_we_a \
-sim:/tb_dual_port_ram/UUT/i_we_b \
-sim:/tb_dual_port_ram/UUT/i_din_a \
-sim:/tb_dual_port_ram/UUT/i_din_b \
-sim:/tb_dual_port_ram/UUT/i_addr_a \
-sim:/tb_dual_port_ram/UUT/i_addr_b \
-sim:/tb_dual_port_ram/UUT/o_dout_a \
-sim:/tb_dual_port_ram/UUT/o_dout_b \
-sim:/tb_dual_port_ram/UUT/mem \
-sim:/tb_dual_port_ram/UUT/read_sr_a \
-sim:/tb_dual_port_ram/UUT/write_sr_a \
-sim:/tb_dual_port_ram/UUT/addr_sr_a \
-sim:/tb_dual_port_ram/UUT/read_sr_b \
-sim:/tb_dual_port_ram/UUT/write_sr_b \
-sim:/tb_dual_port_ram/UUT/addr_sr_b \
-sim:/tb_dual_port_ram/UUT/we_sr_a \
-sim:/tb_dual_port_ram/UUT/en_sr_a \
-sim:/tb_dual_port_ram/UUT/we_sr_b \
-sim:/tb_dual_port_ram/UUT/en_sr_b
-restart
-# ** Note: (vsim-8009) Loading existing optimized design _opt2
-# Loading work.tb_dual_port_ram(fast)
-# Loading work.dual_port_ram_with_latencies(fast)
-run -all
-# Starting simulation...
-# --- Port A Writes ---
-# --- Port B Writes ---
-# --- Port A Reads ---
-# CLK A Cycle 215: Read Request Addr 0. Data out will appear after 4 cycles.
-# CLK A Cycle 225: Read Request Addr 1. Data out will appear after 4 cycles.
-# CLK A Cycle 235: Read Request Addr 2. Data out will appear after 4 cycles.
-# CLK A Cycle 275: o_dout_a = 0xa0 (Expected: 0xA0)
-# CLK A Cycle 285: o_dout_a = 0xa1 (Expected: 0xA1)
-# CLK A Cycle 295: o_dout_a = 0xa2 (Expected: 0xA2)
-# --- Port B Reads ---
-# CLK B Cycle 306: Read Request Addr 5. Data out will appear after 5 cycles.
-# CLK B Cycle 318: Read Request Addr 6. Data out will appear after 5 cycles.
-# CLK B Cycle 378: o_dout_b = 0xb6 (Expected: 0xB5)
-# CLK B Cycle 390: o_dout_b = 0xb5 (Expected: 0xB6)
-# Simulation finished.
-# ** Note: $finish    : dual_port_memory_latency_test_bench.sv(176)
-#    Time: 390 ns  Iteration: 1  Instance: /tb_dual_port_ram
-# 1
-# Break in Module tb_dual_port_ram at dual_port_memory_latency_test_bench.sv line 176
-vlog dual_port_memory_latency_test_bench.sv
-# QuestaSim-64 vlog 2021.2_1 Compiler 2021.05 May 15 2021
-# Start time: 14:36:58 on Oct 31,2025
-# vlog -reportprogress 300 dual_port_memory_latency_test_bench.sv 
-# -- Compiling module tb_dual_port_ram
-# 
-# Top level modules:
-# 	tb_dual_port_ram
-# End time: 14:36:58 on Oct 31,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vsim -voptargs=+acc tb_dual_port_ram
-# End time: 14:37:01 on Oct 31,2025, Elapsed time: 0:29:56
-# Errors: 0, Warnings: 0
-# vsim -voptargs="+acc" tb_dual_port_ram 
-# Start time: 14:37:01 on Oct 31,2025
+# vsim -voptargs="+acc" top_testbench 
+# Start time: 16:52:41 on Nov 25,2025
 # ** Note: (vsim-3813) Design is being optimized due to module recompilation...
 # Loading sv_std.std
-# Loading work.tb_dual_port_ram(fast)
-# Loading work.dual_port_ram_with_latencies(fast)
+# Loading work.top_testbench(fast)
+# Loading work.dual_port_memory_top_module(fast)
+# Loading work.dual_port_memory_latency(fast)
+# Loading work.hamming_encoder(fast)
+# Loading work.hamming_decoder(fast)
 add wave -position insertpoint  \
-sim:/tb_dual_port_ram/UUT/DATA_WIDTH \
-sim:/tb_dual_port_ram/UUT/ADDR_WIDTH \
-sim:/tb_dual_port_ram/UUT/WRITE_LATENCY_A \
-sim:/tb_dual_port_ram/UUT/READ_LATENCY_A \
-sim:/tb_dual_port_ram/UUT/WRITE_LATENCY_B \
-sim:/tb_dual_port_ram/UUT/READ_LATENCY_B \
-sim:/tb_dual_port_ram/UUT/MEM_DEPTH \
-sim:/tb_dual_port_ram/UUT/i_clk_a \
-sim:/tb_dual_port_ram/UUT/i_clk_b \
-sim:/tb_dual_port_ram/UUT/i_en_a \
-sim:/tb_dual_port_ram/UUT/i_en_b \
-sim:/tb_dual_port_ram/UUT/i_we_a \
-sim:/tb_dual_port_ram/UUT/i_we_b \
-sim:/tb_dual_port_ram/UUT/i_din_a \
-sim:/tb_dual_port_ram/UUT/i_din_b \
-sim:/tb_dual_port_ram/UUT/i_addr_a \
-sim:/tb_dual_port_ram/UUT/i_addr_b \
-sim:/tb_dual_port_ram/UUT/o_dout_a \
-sim:/tb_dual_port_ram/UUT/o_dout_b \
-sim:/tb_dual_port_ram/UUT/mem \
-sim:/tb_dual_port_ram/UUT/read_sr_a \
-sim:/tb_dual_port_ram/UUT/write_sr_a \
-sim:/tb_dual_port_ram/UUT/addr_sr_a \
-sim:/tb_dual_port_ram/UUT/read_sr_b \
-sim:/tb_dual_port_ram/UUT/write_sr_b \
-sim:/tb_dual_port_ram/UUT/addr_sr_b \
-sim:/tb_dual_port_ram/UUT/we_sr_a \
-sim:/tb_dual_port_ram/UUT/en_sr_a \
-sim:/tb_dual_port_ram/UUT/we_sr_b \
-sim:/tb_dual_port_ram/UUT/en_sr_b
+sim:/top_testbench/dut/dut_a/WIDTH \
+sim:/top_testbench/dut/dut_a/ADDR_WIDTH \
+sim:/top_testbench/dut/dut_a/DEPTH \
+sim:/top_testbench/dut/dut_a/WRITE_LATENCY_A \
+sim:/top_testbench/dut/dut_a/READ_LATENCY_A \
+sim:/top_testbench/dut/dut_a/WRITE_LATENCY_B \
+sim:/top_testbench/dut/dut_a/READ_LATENCY_B \
+sim:/top_testbench/dut/dut_a/i_clk_a \
+sim:/top_testbench/dut/dut_a/i_we_a \
+sim:/top_testbench/dut/dut_a/i_en_a \
+sim:/top_testbench/dut/dut_a/i_addr_a \
+sim:/top_testbench/dut/dut_a/i_din_a \
+sim:/top_testbench/dut/dut_a/o_dout_a \
+sim:/top_testbench/dut/dut_a/i_clk_b \
+sim:/top_testbench/dut/dut_a/i_we_b \
+sim:/top_testbench/dut/dut_a/i_en_b \
+sim:/top_testbench/dut/dut_a/i_addr_b \
+sim:/top_testbench/dut/dut_a/i_din_b \
+sim:/top_testbench/dut/dut_a/o_dout_b \
+sim:/top_testbench/dut/dut_a/mem \
+sim:/top_testbench/dut/dut_a/ren_a \
+sim:/top_testbench/dut/dut_a/ren_b \
+sim:/top_testbench/dut/dut_a/wpipe_a \
+sim:/top_testbench/dut/dut_a/wpipe_b \
+sim:/top_testbench/dut/dut_a/i \
+sim:/top_testbench/dut/dut_a/j
+# Unable to lock WLF file "vsim.wlf". Retrying 1 times, errno 11
+# Unable to lock WLF file "vsim.wlf". Retrying 2 times, errno 11
+# Unable to lock WLF file "vsim.wlf". Retrying 3 times, errno 11
+# Cannot lock WLF file: "vsim.wlf"
+#           errno 11: Resource temporarily unavailable.
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: user  Hostname: localhost.localdomain  ProcessID: 32682
+#           Attempting to use alternate WLF file "./wlftAclqnF".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftAclqnF
+add wave -position insertpoint  \
+sim:/top_testbench/dut/dut_b/data_in \
+sim:/top_testbench/dut/dut_b/data_out
+add wave -position insertpoint  \
+sim:/top_testbench/dut/dut_c/data_in \
+sim:/top_testbench/dut/dut_c/data_out
+add wave -position insertpoint  \
+sim:/top_testbench/dut/dut_e/data_in \
+sim:/top_testbench/dut/dut_e/error_detected \
+sim:/top_testbench/dut/dut_e/error_corrected \
+sim:/top_testbench/dut/dut_e/data_out \
+sim:/top_testbench/dut/dut_e/syndrome \
+sim:/top_testbench/dut/dut_e/corrected_code
+add wave -position insertpoint  \
+sim:/top_testbench/dut/dut_f/data_in \
+sim:/top_testbench/dut/dut_f/error_detected \
+sim:/top_testbench/dut/dut_f/error_corrected \
+sim:/top_testbench/dut/dut_f/data_out \
+sim:/top_testbench/dut/dut_f/syndrome \
+sim:/top_testbench/dut/dut_f/corrected_code
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Note: (vsim-8009) Loading existing optimized design _opt3
+# Loading work.top_testbench(fast)
+# Loading work.dual_port_memory_top_module(fast)
+# Loading work.dual_port_memory_latency(fast)
+# Loading work.hamming_encoder(fast)
+# Loading work.hamming_decoder(fast)
 run -all
-# Starting simulation...
-# --- Port A Writes ---
-# --- Port B Writes ---
-# --- Port A Reads ---
-# CLK A Cycle 275: Read Request Addr 0. Data out will appear after 4 cycles.
-# CLK A Cycle 285: Read Request Addr 1. Data out will appear after 4 cycles.
-# CLK A Cycle 295: Read Request Addr 2. Data out will appear after 4 cycles.
-# CLK A Cycle 335: o_dout_a = 0xa0 (Expected: 0xA0)
-# CLK A Cycle 345: o_dout_a = 0xa1 (Expected: 0xA1)
-# CLK A Cycle 355: o_dout_a = 0xa2 (Expected: 0xA2)
-# --- Port B Reads ---
-# CLK B Cycle 370: Read Request Addr 5. Data out will appear after 5 cycles.
-# CLK B Cycle 390: Read Request Addr 6. Data out will appear after 5 cycles.
-# CLK B Cycle 490: o_dout_b = 0xb6 (Expected: 0xB5)
-# CLK B Cycle 510: o_dout_b = 0xb5 (Expected: 0xB6)
-# Simulation finished.
-# ** Note: $finish    : dual_port_memory_latency_test_bench.sv(176)
-#    Time: 510 ns  Iteration: 1  Instance: /tb_dual_port_ram
+# ** Note: $finish    : top_testbench2.sv(86)
+#    Time: 1 us  Iteration: 0  Instance: /top_testbench
 # 1
-# Break in Module tb_dual_port_ram at dual_port_memory_latency_test_bench.sv line 176
-# Causality operation skipped due to absence of debug database file
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# End time: 15:09:54 on Oct 31,2025, Elapsed time: 0:32:53
+# Break in Module top_testbench at top_testbench2.sv line 86
+add wave -position insertpoint  \
+sim:/top_testbench/dut/WIDTH \
+sim:/top_testbench/dut/CODE_WIDTH \
+sim:/top_testbench/dut/ADDR_WIDTH \
+sim:/top_testbench/dut/WRITE_LATENCY_A \
+sim:/top_testbench/dut/READ_LATENCY_A \
+sim:/top_testbench/dut/WRITE_LATENCY_B \
+sim:/top_testbench/dut/READ_LATENCY_B \
+sim:/top_testbench/dut/NUM_BANK \
+sim:/top_testbench/dut/DEPTH \
+sim:/top_testbench/dut/i_clk_a \
+sim:/top_testbench/dut/i_clk_b \
+sim:/top_testbench/dut/i_en_a \
+sim:/top_testbench/dut/i_en_b \
+sim:/top_testbench/dut/i_we_a \
+sim:/top_testbench/dut/i_we_b \
+sim:/top_testbench/dut/i_din_a \
+sim:/top_testbench/dut/i_din_b \
+sim:/top_testbench/dut/i_addr_a \
+sim:/top_testbench/dut/i_addr_b \
+sim:/top_testbench/dut/o_dout_a1 \
+sim:/top_testbench/dut/o_dout_b1 \
+sim:/top_testbench/dut/out_a \
+sim:/top_testbench/dut/out_b \
+sim:/top_testbench/dut/e_out_a \
+sim:/top_testbench/dut/e_out_b \
+sim:/top_testbench/dut/o_error_detected_a \
+sim:/top_testbench/dut/o_error_detected_b \
+sim:/top_testbench/dut/o_error_corrected_a \
+sim:/top_testbench/dut/o_error_corrected_b \
+sim:/top_testbench/dut/m_dout_a \
+sim:/top_testbench/dut/m_dout_b
+add wave -position insertpoint  \
+sim:/top_testbench/dut/WIDTH \
+sim:/top_testbench/dut/CODE_WIDTH \
+sim:/top_testbench/dut/ADDR_WIDTH \
+sim:/top_testbench/dut/WRITE_LATENCY_A \
+sim:/top_testbench/dut/READ_LATENCY_A \
+sim:/top_testbench/dut/WRITE_LATENCY_B \
+sim:/top_testbench/dut/READ_LATENCY_B \
+sim:/top_testbench/dut/NUM_BANK \
+sim:/top_testbench/dut/DEPTH \
+sim:/top_testbench/dut/i_clk_a \
+sim:/top_testbench/dut/i_clk_b \
+sim:/top_testbench/dut/i_en_a \
+sim:/top_testbench/dut/i_en_b \
+sim:/top_testbench/dut/i_we_a \
+sim:/top_testbench/dut/i_we_b \
+sim:/top_testbench/dut/i_din_a \
+sim:/top_testbench/dut/i_din_b \
+sim:/top_testbench/dut/i_addr_a \
+sim:/top_testbench/dut/i_addr_b \
+sim:/top_testbench/dut/o_dout_a1 \
+sim:/top_testbench/dut/o# End time: 17:30:22 on Nov 25,2025, Elapsed time: 0:57:33
+# Errors: 0, Warnings: 0
+stbench/dut/e_out_a \
+sim:/top_testbench/dut/e_out_b \
+sim:/top_testbench/dut/o_error_detected_a \
+sim:/top_testbench/dut/o_error_detected_b \
+sim:/top_testbench/dut/o_error_corrected_a \
+sim:/top_testbench/dut/o_error_corrected_b \
+sim:/top_testbench/dut/m_dout_a \
+sim:/top_testbench/dut/m_dout_b
+restart
+# ** Note: (vsim-8009) Loading existing optimized design _opt3
+# Loading work.top_testbench(fast)
+# Loading work.dual_port_memory_top_module(fast)
+# Loading work.dual_port_memory_latency(fast)
+# Loading work.hamming_encoder(fast)
+# Loading work.hamming_decoder(fast)
+run -all
+# ** Note: $finish    : top_testbench2.sv(86)
+#    Time: 1 us  Iteration: 0  Instance: /top_testbench
+# 1
+# Break in Module top_testbench at top_testbench2.sv line 86
+# End time: 17:30:07 on Nov 25,2025, Elapsed time: 0:37:26
 # Errors: 0, Warnings: 0

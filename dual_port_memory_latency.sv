@@ -12,103 +12,162 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-module dual_port_memory_latency #(
-    parameter DATA_WIDTH      = 8,
-    parameter ADDR_WIDTH      = 3,
-    parameter WRITE_LATENCY_A = 5,
-    parameter READ_LATENCY_A  = 4,
-    parameter WRITE_LATENCY_B = 4,
-    parameter READ_LATENCY_B  = 5
-)(
-    input  logic                   i_clk_a,
-    input  logic                   i_clk_b,
-    input  logic                   i_en_a,
-    input  logic                   i_en_b,
-    input  logic                   i_we_a,
-    input  logic                   i_we_b,
-    input  logic [DATA_WIDTH-1:0]  i_din_a,
-    input  logic [DATA_WIDTH-1:0]  i_din_b,
-    input  logic [ADDR_WIDTH-1:0]  i_addr_a,
-    input  logic [ADDR_WIDTH-1:0]  i_addr_b,
-    output logic [DATA_WIDTH-1:0]  o_dout_a,
-    output logic [DATA_WIDTH-1:0]  o_dout_b
-);
+//=========================================================
+// Dual-Port Memory with Per-Port Read/Write Latency
+// - Dual clocks: i_clk_a, i_clk_b
+// - Read occurs when i_en_* = 1 and i_we_* = 0
+// - Write occurs when i_we_* = 1 (i_en_* is ignored for write)
+// - READ_LATENCY_* cycles from read request to o_dout_*
+// - WRITE_LATENCY_* cycles from write request to memory commit
+// NOTE:
+//   - This is a behavioral model intended for simulation/inference.
+//   - In real dual-clock RAMs, read is typically synchronous (READ_LATENCY >= 1).
+//   - Same-address write collisions across clocks resolve to "last in time wins".
+//=========================================================
+module dual_port_memory_latency
+    #(
+        parameter integer WIDTH            = 8,
+        parameter integer ADDR_WIDTH       = 4,
+        parameter integer DEPTH            = 2 ** ADDR_WIDTH,
+        parameter integer WRITE_LATENCY_A  = 1,
+        parameter integer READ_LATENCY_A   = 2,
+        parameter integer WRITE_LATENCY_B  = 1,
+        parameter integer READ_LATENCY_B   = 2
+    )
+    (
+        // --------- Port A ---------
+        input  wire                      i_clk_a,
+        input  wire                      i_we_a,   // Write enable (A)
+        input  wire                      i_en_a,   // Read enable  (A)
+        input  wire [ADDR_WIDTH-1:0]     i_addr_a,
+        input  wire [WIDTH-1:0]          i_din_a,
+        output logic [WIDTH-1:0]         o_dout_a,
 
-        localparam MEM_DEPTH = 2**ADDR_WIDTH;
+        // --------- Port B ---------
+        input  wire                      i_clk_b,
+        input  wire                      i_we_b,   // Write enable (B)
+        input  wire                      i_en_b,   // Read enable  (B)
+        input  wire [ADDR_WIDTH-1:0]     i_addr_b,
+        input  wire [WIDTH-1:0]          i_din_b,
+        output logic [WIDTH-1:0]         o_dout_b
+    );
+
+    // -----------------------------------------------------
+    // Memory Array
+    // -----------------------------------------------------
+    logic [WIDTH-1:0] mem [0:DEPTH-1];
+
+    // -----------------------------------------------------
+    // Helpers
+    // Read only when en=1 and we=0 on that port
+    // -----------------------------------------------------
+    wire ren_a = i_en_a & ~i_we_a;
+    wire ren_b = i_en_b & ~i_we_b;
+
     
-        logic [DATA_WIDTH-1:0] mem [MEM_DEPTH];
+    typedef struct packed {
+        logic                    we;
+        logic [ADDR_WIDTH-1:0]   addr;
+        logic [WIDTH-1:0]        din;
+    } wr_req_t;
 
-        logic [DATA_WIDTH-1:0] read_sr_a [READ_LATENCY_A:0];
-       logic [DATA_WIDTH-1:0] write_sr_a [WRITE_LATENCY_A:0];
-    logic [ADDR_WIDTH-1:0] addr_sr_a  [WRITE_LATENCY_A:0];
+    wr_req_t wpipe_a [0:WRITE_LATENCY_A];
+    wr_req_t wpipe_b [0:WRITE_LATENCY_B];
 
-        logic [DATA_WIDTH-1:0] read_sr_b [READ_LATENCY_B:0];
-        logic [DATA_WIDTH-1:0] write_sr_b [WRITE_LATENCY_B:0];
-    logic [ADDR_WIDTH-1:0] addr_sr_b  [WRITE_LATENCY_B:0];
-    
-        always_ff @(posedge i_clk_a) begin
-        if (i_en_a) begin
-          write_sr_a[0] <= i_din_a;
-          addr_sr_a[0]  <= i_addr_a;
-          for (int i = 0; i < WRITE_LATENCY_A; i++) begin
-             write_sr_a[i+1] <= write_sr_a[i];
-             addr_sr_a[i+1]  <= addr_sr_a[i];
-            end
-            end
-    end
-    logic we_sr_a [WRITE_LATENCY_A:0];
-    logic en_sr_a [WRITE_LATENCY_A:0];
-    logic we_sr_b [WRITE_LATENCY_B:0];
-    logic en_sr_b [WRITE_LATENCY_B:0];
-
+    // Capture and shift write pipeline on Port A
+    integer i;
     always_ff @(posedge i_clk_a) begin
-              en_sr_a[0]  <= i_en_a;
-        we_sr_a[0]  <= i_we_a;
-        addr_sr_a[0]<= i_addr_a;
-        write_sr_a[0]<= i_din_a;
-        read_sr_a[0]<= mem[i_addr_a];
-	for (int i = 0; i < WRITE_LATENCY_A; i++) begin
-            en_sr_a[i+1] <= en_sr_a[i];
-            we_sr_a[i+1] <= we_sr_a[i];
-            addr_sr_a[i+1] <= addr_sr_a[i];
-            write_sr_a[i+1] <= write_sr_a[i];
+        // Stage 0 captures current cycle write request
+        wpipe_a[0].we   <= i_we_a;
+        wpipe_a[0].addr <= i_addr_a;
+        wpipe_a[0].din  <= i_din_a;
+
+        // Shift deeper stages
+        for (i = 1; i <= WRITE_LATENCY_A; i++) begin
+            wpipe_a[i] <= wpipe_a[i-1];
         end
 
-        for (int i = 0; i < READ_LATENCY_A; i++) begin
-             read_sr_a[i+1] <= read_sr_a[i];
+        // Commit at final stage
+        if (wpipe_a[WRITE_LATENCY_A].we) begin
+            mem[wpipe_a[WRITE_LATENCY_A].addr] <= wpipe_a[WRITE_LATENCY_A].din;
         end
-
-       
-        if (en_sr_a[WRITE_LATENCY_A] && we_sr_a[WRITE_LATENCY_A]) begin
-            mem[addr_sr_a[WRITE_LATENCY_A]] <= write_sr_a[WRITE_LATENCY_A];
-        end
-
-          o_dout_a <= read_sr_a[READ_LATENCY_A];
-        end
-    
-        always_ff @(posedge i_clk_b) begin
-               en_sr_b[0]  <= i_en_b;
-        we_sr_b[0]  <= i_we_b;
-        addr_sr_b[0]<= i_addr_b;
-        write_sr_b[0]<= i_din_b;
-        read_sr_b[0]<= mem[i_addr_b];
-        for (int i = 0; i < WRITE_LATENCY_B; i++) begin
-            en_sr_b[i+1] <= en_sr_b[i];
-            we_sr_b[i+1] <= we_sr_b[i];
-            addr_sr_b[i+1] <= addr_sr_b[i];
-            write_sr_b[i+1] <= write_sr_b[i];
-        end
-
-        for (int i = 0; i < READ_LATENCY_B; i++) begin
-             read_sr_b[i+1] <= read_sr_b[i];
-        end
-
-                if (en_sr_b[WRITE_LATENCY_B] && we_sr_b[WRITE_LATENCY_B]) begin
-            mem[addr_sr_b[WRITE_LATENCY_B]] <= write_sr_b[WRITE_LATENCY_B];
-        end
-
-                o_dout_b <= read_sr_b[READ_LATENCY_B];
     end
+
+    // Capture and shift write pipeline on Port B
+    integer j;
+    always_ff @(posedge i_clk_b) begin
+        // Stage 0 captures current cycle write request
+        wpipe_b[0].we   <= i_we_b;
+        wpipe_b[0].addr <= i_addr_b;
+        wpipe_b[0].din  <= i_din_b;
+        for (j = 1; j <= WRITE_LATENCY_B; j++) begin
+            wpipe_b[j] <= wpipe_b[j-1];
+        end
+        if (wpipe_b[WRITE_LATENCY_B].we) begin
+            mem[wpipe_b[WRITE_LATENCY_B].addr] <= wpipe_b[WRITE_LATENCY_B].din;
+        end
+    end
+    // --------- Port A Read ---------
+    generate
+        if (READ_LATENCY_A == 0) begin : G_A_ASYNC_READ
+            always_comb begin
+                o_dout_a = (ren_a) ? mem[i_addr_a] : '0;
+            end
+        end else begin : G_A_SYNC_READ
+            // Address/enable pipelines
+            logic [ADDR_WIDTH-1:0] raddr_a_pipe [0:READ_LATENCY_A-1];
+            logic                  ren_a_pipe   [0:READ_LATENCY_A-1];
+
+            integer ra;
+            always_ff @(posedge i_clk_a) begin
+                // Stage 0 capture
+                raddr_a_pipe[0] <= i_addr_a;
+                ren_a_pipe[0]   <= ren_a;
+
+                // Shift deeper stages
+                for (ra = 1; ra < READ_LATENCY_A; ra++) begin
+                    raddr_a_pipe[ra] <= raddr_a_pipe[ra-1];
+                    ren_a_pipe[ra]   <= ren_a_pipe[ra-1];
+                end
+                if (ren_a_pipe[READ_LATENCY_A-1]) begin
+                    o_dout_a <= mem[raddr_a_pipe[READ_LATENCY_A-1]];
+                end
+                // else hold previous o_dout_a
+            end
+        end
+    endgenerate
+
+    // --------- Port B Read ---------
+    generate
+        if (READ_LATENCY_B == 0) begin : G_B_ASYNC_READ
+            always_comb begin
+                o_dout_b = (ren_b) ? mem[i_addr_b] : '0;
+            end
+        end else begin : G_B_SYNC_READ
+            // Address/enable pipelines
+            logic [ADDR_WIDTH-1:0] raddr_b_pipe [0:READ_LATENCY_B-1];
+            logic                  ren_b_pipe   [0:READ_LATENCY_B-1];
+
+            integer rb;
+            always_ff @(posedge i_clk_b) begin
+                // Stage 0 capture
+                raddr_b_pipe[0] <= i_addr_b;
+                ren_b_pipe[0]   <= ren_b;
+
+                // Shift deeper stages
+                for (rb = 1; rb < READ_LATENCY_B; rb++) begin
+                    raddr_b_pipe[rb] <= raddr_b_pipe[rb-1];
+                    ren_b_pipe[rb]   <= ren_b_pipe[rb-1];
+                end
+
+                // Read at final stage address; update output only when read enabled
+                if (ren_b_pipe[READ_LATENCY_B-1]) begin
+                    o_dout_b <= mem[raddr_b_pipe[READ_LATENCY_B-1]];
+                end
+                // else hold previous o_dout_b
+            end
+        end
+    endgenerate
 
 endmodule
 

@@ -5,7 +5,7 @@
 //  identify and flip the bit.
 //
 //////////////////////////////////////////////////////////////////////////////////////
-module hamming_encoder_8to12 (
+module hamming_encoder (
     input  wire [ 7:0] data_in,
     output wire [11:0] data_out
 );
@@ -21,9 +21,9 @@ module hamming_encoder_8to12 (
   assign data_out[11] = data_in[7];
 
   // Parity bit computation (covers specific coded positions)
-  assign data_out[0]  = data_out[2] ^ data_out[4] ^ data_out[6] ^ data_out[8] ^ data_out[10];
-  assign data_out[1]  = data_out[2] ^ data_out[5] ^ data_out[6] ^ data_out[9] ^ data_out[10];
-  assign data_out[3]  = data_out[4] ^ data_out[5] ^ data_out[6] ^ data_out[11];
+  assign data_out[0]  = data_out[1] ^ data_out[3] ^ data_out[5] ^ data_out[7] ^ data_out[9] ^ data_out[11];
+  assign data_out[1]  = data_out[2] ^ data_out[3] ^ data_out[6] ^ data_out[7] ^ data_out[10] ^ data_out[11];
+  assign data_out[3]  = data_out[4] ^ data_out[5] ^ data_out[6] ^ data_out[7];
   assign data_out[7]  = data_out[8] ^ data_out[9] ^ data_out[10] ^ data_out[11];
 
 endmodule
