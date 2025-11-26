@@ -22,18 +22,17 @@
 // 4 . Multi_Bank_Memory by control implementation : The multi bank memory control implementation was designed by adding a decoder to the multi bank memory 
 // it will decide which will have to produce the memory bank it will also depends upon total address of first two MSB bits .
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//`include"packet.sv"
-`include "dual_port_memory_latency.sv"
+
 `include "hamming_encoder.sv"
 `include "hamming_decoder.sv"
 `include "dual_port_multi_bank_memory.sv"
- module dual_port_memory_top_module #(parameter WIDTH = 8,
+ module dual_port_memory_top_module2 #(parameter WIDTH = 8,
     parameter CODE_WIDTH = 12,
     parameter ADDR_WIDTH = 5,
-    parameter WRITE_LATENCY_A = 0,
-    parameter READ_LATENCY_A = 0,
-    parameter WRITE_LATENCY_B = 0,
-    parameter READ_LATENCY_B = 0,
+    parameter WRITE_LATENCY_A = 4,
+    parameter READ_LATENCY_A = 5,
+    parameter WRITE_LATENCY_B = 4,
+    parameter READ_LATENCY_B = 5,
     parameter NUM_BANK = 4,
     parameter DEPTH = 2 ** ADDR_WIDTH
     )
@@ -49,31 +48,11 @@
      logic o_error_detected_a, o_error_detected_b;
      logic o_error_corrected_a, o_error_corrected_b;
      logic [WIDTH-1:0] m_dout_a, m_dout_b; // multi bank memory output 
-     dual_port_memory_latency #(.WIDTH(WIDTH), .ADDR_WIDTH(ADDR_WIDTH), .WRITE_LATENCY_A(WRITE_LATENCY_A), .READ_LATENCY_A(READ_LATENCY_A), .WRITE_LATENCY_B(WRITE_LATENCY_B), .READ_LATENCY_B(READ_LATENCY_B), .DEPTH(DEPTH)) dut_a(.i_clk_a(i_clk_a), .i_clk_b(i_clk_b), .i_en_a(i_en_a), .i_en_b(i_en_b), .i_we_a(i_we_a), .i_we_b(i_we_b), .i_addr_a(i_addr_a), .i_addr_b(i_addr_b), .i_din_a(i_din_a), .i_din_b(i_din_b), .o_dout_a(out_a), .o_dout_b(out_b));
-     hamming_encoder dut_b(.data_in(out_a), .data_out(e_out_a));
-     hamming_encoder dut_c(.data_in(out_b), .data_out(e_out_b));
-   /*  dual_port_multi_bank_memory #(
-    .WIDTH(CODE_WIDTH),
-    .ADDR_TOTAL(ADDR_WIDTH),
-    .NUM_BANK(NUM_BANK)
-  ) dut_d (
-    .i_clk_a(i_clk_a),
-    .i_clk_b(i_clk_b),
-    .i_en_a(i_en_a),
-    .i_en_b(i_en_b),
-
-    .i_we_a(i_we_a),
-    .i_we_b(i_we_b),
-    .i_din_a(e_out_a),
-    .i_din_b(e_out_b),
-    .i_addr_a(i_addr_a),
-    .i_addr_b(i_addr_b),
-    .o_dout_a(m_dout_a),
-    .o_dout_b(m_dout_b)
-  );*/
-  hamming_decoder dut_d(.data_in(e_out_a), .data_out(o_dout_a1), .error_detected(o_error_detected_a), .error_corrected(o_error_corrected_a));
+     hamming_encoder dut_a(.data_in(i_din_a), .data_out(e_out_a));
+     hamming_encoder dut_b(.data_in(i_din_b), .data_out(e_out_b));
+       hamming_decoder dut_d(.data_in(e_out_a), .data_out(o_dout_a1), .error_detected(o_error_detected_a), .error_corrected(o_error_corrected_a));
   hamming_decoder dut_e(.data_in(e_out_b), .data_out(o_dout_b1), .error_detected(o_error_detected_b), .error_corrected(o_error_corrected_b));
-    dual_port_multi_bank_memory #(
+ dual_port_multi_bank_memory #(
     .WIDTH(WIDTH),
     .ADDR_TOTAL(ADDR_WIDTH),
     .NUM_BANK(NUM_BANK)
@@ -91,7 +70,4 @@
     .o_dout_a(m_dout_a),
     .o_dout_b(m_dout_b)
   );
-
 endmodule
-     
-

@@ -8,8 +8,8 @@
 //
 /////////////////////////////////////////////////////////////////////////////////////////
 
-module dual_port_memory_bank #(parameter WIDTH = 12,
-  parameter ADDR = 10,
+module dual_port_memory_bank #(parameter WIDTH = 8,
+  parameter ADDR = 3,
   parameter DEPTH = 2 ** ADDR)
   ( input i_clk_a, i_clk_b,
     input i_en_a, i_en_b,

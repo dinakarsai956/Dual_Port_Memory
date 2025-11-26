@@ -6,9 +6,10 @@
 // . The main reason of using this multi bank memory is to read / write
 // operations done in a parallel way.
 ////////////////////////////////////////////////////////////////////////////////////
-
-module dual_port_multi_bank_memory #(parameter WIDTH = 12,
-   parameter ADDR_TOTAL = 10, 
+`include"decoder.sv"
+`include"dual_port_memory_latency.sv"
+module dual_port_multi_bank_memory #(parameter WIDTH = 8,
+   parameter ADDR_TOTAL = 5, 
    parameter NUM_BANK = 4
 )(
     input  i_clk_a, i_clk_b,
@@ -34,7 +35,6 @@ module dual_port_multi_bank_memory #(parameter WIDTH = 12,
     // FIX: Declare decoder outputs with correct width
     logic [NUM_BANK-1:0] out_a;
     logic [NUM_BANK-1:0] out_b;
-
     decoder #(.A(BANK_BITS), .NUM_BANK(NUM_BANK)) dut_a(.in(bank_sel_a), .out(out_a));
     decoder #(.A(BANK_BITS), .NUM_BANK(NUM_BANK)) dut_b(.in(bank_sel_b), .out(out_b));
 
@@ -43,10 +43,10 @@ module dual_port_multi_bank_memory #(parameter WIDTH = 12,
 
     genvar i;
     generate
-      for (i = 0; i < NUM_BANK; i++) begin : BANK_GEN
-        dual_port_memory_bank #(
+      for (i = 0; i < NUM_BANK; i++) begin 
+        dual_port_memory_latency #(
           .WIDTH(WIDTH),
-          .ADDR(ADDR_PER_BANK)
+          .ADDR_WIDTH(ADDR_PER_BANK)
         ) bank_inst (
           .i_clk_a(i_clk_a),
           .i_clk_b(i_clk_b),

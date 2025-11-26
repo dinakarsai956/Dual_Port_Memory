@@ -1,2 +1,2 @@
-var g_data = {"14":[13,"dut_a",1],"15":[13,"dut_b",1],"16":[13,"dut_c",1],"17":[13,"dut_d",1],"24":[13,"dut_e",1],"25":[13,"dut_f",1],"13":[11,"dut",1],"11":[-1,"top_testbench",1]};
+var g_data = {"13":[12,"dut_a",1],"14":[12,"dut_b",1],"15":[12,"dut_d",1],"16":[12,"dut_e",1],"18":[17,"genblk1[3]/bank_inst",1],"19":[17,"genblk1[2]/bank_inst",1],"20":[17,"genblk1[1]/bank_inst",1],"21":[17,"genblk1[0]/bank_inst",1],"22":[17,"dut_a",1],"23":[17,"dut_b",1],"17":[12,"dut_f",1],"12":[10,"dut",1],"10":[-1,"top_testbench",1]};
 processInstLinks(g_data);

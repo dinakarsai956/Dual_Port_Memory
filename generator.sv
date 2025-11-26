@@ -8,7 +8,7 @@
 class generator;
   transaction t;
   mailbox #(transaction) gen2drv;  // mailbox for using transactions from one class to another
-  int num_transactions = 2;
+  int num_transactions = 50;
   function new(mailbox #(transaction) gen2drv);
     this.gen2drv = gen2drv;
   endfunction
@@ -23,6 +23,6 @@ class generator;
 
       gen2drv.put(t);
       end
-      $dsiplay("[GEN] number of transactions ", num_transactions);
+      $display("[GEN] number of transactions ", num_transactions);
   endtask
 endclass

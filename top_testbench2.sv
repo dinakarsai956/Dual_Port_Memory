@@ -1,12 +1,12 @@
-`include"dual_port_memory_top_module.sv"
+`include"dual_port_memory_top_module2.sv"
 module top_testbench;
    parameter WIDTH = 8;
     parameter CODE_WIDTH = 12;
-    parameter ADDR_WIDTH = 10;
-    parameter WRITE_LATENCY_A = 1;
-    parameter READ_LATENCY_A = 2;
-    parameter WRITE_LATENCY_B = 1;
-    parameter READ_LATENCY_B = 2;
+    parameter ADDR_WIDTH = 5;
+    parameter WRITE_LATENCY_A = 0;
+    parameter READ_LATENCY_A = 0;
+    parameter WRITE_LATENCY_B = 0;
+    parameter READ_LATENCY_B = 0;
     parameter NUM_BANK = 4;
     parameter DEPTH = 2 ** ADDR_WIDTH;
     logic i_clk_a, i_clk_b;
@@ -22,65 +22,34 @@ module top_testbench;
   end
   always #10 i_clk_a = ~i_clk_a;
   always #10 i_clk_b = ~i_clk_b;
- initial begin
-    i_en_a = 0;
-    i_we_a = 0; 
-    i_din_a = '0; 
-    i_addr_a = '0; 
-    @(posedge i_clk_a);
+  initial begin
     i_en_a = 1;
-    i_we_a = 1; 
-    i_din_a = 8'd12;; 
-    i_addr_a = 10'd312;
+    i_we_a = 1;
+    i_din_a = 8'hAA;
+    i_addr_a = 5'd0;
     @(posedge i_clk_a);
-    i_din_a = 8'd22;
-    i_addr_a = 10'd202;
-    @(posedge i_clk_a);
-    i_din_a = 8'd98;
-    i_addr_a = 10'd010;
-    @(posedge i_clk_a);
-    i_din_a = 8'd23;
-    i_addr_a = 10'd101;
+    i_din_a = 8'hBB;
+    i_addr_a = 5'd1;
     @(posedge i_clk_a);
     i_we_a = 0;
-    i_addr_a = 10'd312;
+    i_addr_a = 5'd0;
     @(posedge i_clk_a);
-    i_addr_a = 10'd202;
-    @(posedge i_clk_a);
-    i_addr_a = 10'd101;
-    @(posedge i_clk_a);
-    i_addr_a = 10'd010;
+    i_addr_a = 5'd1;
     @(posedge i_clk_a);
   end
   initial begin
-     i_en_b = 0;
-     i_we_b = 0;
-     i_din_b = '0;
-     i_addr_b = '0;
-     @(posedge i_clk_b);
-      i_en_b = 1;
-      i_we_b = 1;
-      i_din_b = 8'd11;
-      i_addr_b = 10'd301;
-      @(posedge i_clk_b);
-      i_din_b = 8'd13;
-      i_addr_b = 10'd113;
-      @(posedge i_clk_b);
-      i_din_b = 8'd14;
-      i_addr_b = 10'd001;
-      @(posedge i_clk_b);
-      i_din_b = 8'd12;
-      i_addr_b = 10'd215;
-      @(posedge i_clk_b);
-      i_we_b = 0;
-      i_addr_b = 10'd312;
-      @(posedge i_clk_b);
-      i_addr_b =  10'd113;
-      @(posedge i_clk_b);
-      i_addr_b =  10'd001;
-      @(posedge i_clk_b);
-      i_addr_b = 10'd215;
-      @(posedge i_clk_b);
+    i_en_b = 1;
+    i_we_b = 1;
+    i_din_b = 8'hCC;
+    i_addr_b = 5'd2;
+    @(posedge i_clk_b);
+    i_din_b = 8'hDD;
+    i_addr_b = 5'd3;
+    @(posedge i_clk_b);
+    i_we_b = 0;
+    i_addr_b = 5'd2;
+    @(posedge i_clk_b);
+    i_addr_b = 5'd3;
   end
    initial begin
    #1000  $finish;

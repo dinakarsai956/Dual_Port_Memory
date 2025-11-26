@@ -1,6 +1,6 @@
 module dual_port_multi_bank_memory_testbench;
   parameter WIDTH      = 8;
-  parameter ADDR_TOTAL = 10;     
+  parameter ADDR_TOTAL = 5;     
   parameter NUM_BANK   = 4;
 
   

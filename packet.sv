@@ -12,8 +12,8 @@
     parameter WIDTH = 8;
     parameter CODE_WIDTH = 12;
     parameter ADDR_WIDTH = 10;
-    parameter WRITE_LATENCY_A = 5;
-    parameter READ_LATENCY_A = 4;
+    parameter WRITE_LATENCY_A = 4;
+    parameter READ_LATENCY_A = 5;
     parameter WRITE_LATENCY_B = 4;
     parameter READ_LATENCY_B = 5;
     parameter NUM_BANK = 4;

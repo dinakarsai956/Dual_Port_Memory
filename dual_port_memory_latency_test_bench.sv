@@ -3,10 +3,10 @@ module dual_port_memory_latency_testbench;
 
     parameter WIDTH      = 8;
     parameter ADDR_WIDTH = 3;
-    parameter WRITE_LATENCY_A = 4;
-    parameter READ_LATENCY_A  = 5;
-    parameter WRITE_LATENCY_B = 4;
-    parameter READ_LATENCY_B  = 5;
+    parameter WRITE_LATENCY_A = 1;
+    parameter READ_LATENCY_A  = 2;
+    parameter WRITE_LATENCY_B = 1;
+    parameter READ_LATENCY_B  = 2;
     parameter DEPTH = 2 ** ADDR_WIDTH;
 
     logic i_clk_a = 0, i_clk_b = 0;

@@ -1,2 +1,2 @@
-var g_data = {"5":["work.dual_port_memory_latency",100.00,1],"7":["work.dual_port_multi_bank_memory",100.00,1],"10":["work.hamming_decoder",60.00,1],"6":["work.hamming_encoder",100.00,1]};
+var g_data = {"8":["work.decoder",100.00,1],"9":["work.dual_port_memory_latency",100.00,1],"7":["work.dual_port_multi_bank_memory",100.00,1],"6":["work.hamming_decoder",100.00,1],"5":["work.hamming_encoder",100.00,1]};
 processDuLinks(g_data);
